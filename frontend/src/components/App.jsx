@@ -5,6 +5,7 @@ import Note from "./Note";
 import CreateArea from "./CreateArea";
 import axios from "axios";
 
+const API_ENDPOINT = process.env.NODE_ENV || "https://arcane-cove-98465.herokuapp.com/";
 
 function App() {
   const [notes, setNotes] = useState([]);
@@ -18,7 +19,8 @@ function App() {
 
 
   useEffect(() => {
-    axios.get("http://localhost:5000")
+    axios.get("https://arcane-cove-98465.herokuapp.com/")
+    // axios.get(API_ENDPOINT )
       .then(res => {
         setNotes(res.data)
         
@@ -28,7 +30,8 @@ function App() {
 
   function deleteNote(id) {
     
-    axios.delete("http://localhost:5000/" + id);
+    axios.delete("https://arcane-cove-98465.herokuapp.com/" + id);
+    // axios.delete(API_ENDPOINT  + id);
     setNotes(prevNotes => {
       return prevNotes.filter((noteItem, index) => {
         return noteItem._id !== id;
